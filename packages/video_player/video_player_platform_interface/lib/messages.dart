@@ -31,6 +31,8 @@ class CreateMessage {
   String uri;
   String packageName;
   String formatHint;
+  Map<dynamic, dynamic> options;
+
   // ignore: unused_element
   Map<dynamic, dynamic> _toMap() {
     final Map<dynamic, dynamic> pigeonMap = <dynamic, dynamic>{};
@@ -38,6 +40,7 @@ class CreateMessage {
     pigeonMap['uri'] = uri;
     pigeonMap['packageName'] = packageName;
     pigeonMap['formatHint'] = formatHint;
+    pigeonMap['options'] = options;
     return pigeonMap;
   }
 
@@ -51,6 +54,7 @@ class CreateMessage {
     result.uri = pigeonMap['uri'];
     result.packageName = pigeonMap['packageName'];
     result.formatHint = pigeonMap['formatHint'];
+    result.options = pigeonMap['options'];
     return result;
   }
 }
@@ -173,6 +177,8 @@ class VideoPlayerApi {
         'dev.flutter.pigeon.VideoPlayerApi.initialize', StandardMessageCodec());
 
     final Map<dynamic, dynamic> replyMap = await channel.send(null);
+    print('----------------');
+    print(replyMap);
     if (replyMap == null) {
       throw PlatformException(
           code: 'channel-error',
@@ -185,7 +191,6 @@ class VideoPlayerApi {
           message: error['message'],
           details: error['details']);
     } else {
-      // noop
     }
   }
 
@@ -194,7 +199,13 @@ class VideoPlayerApi {
     const BasicMessageChannel<dynamic> channel = BasicMessageChannel<dynamic>(
         'dev.flutter.pigeon.VideoPlayerApi.create', StandardMessageCodec());
 
+    print('=========================');
+    print(requestMap.toString());
+
     final Map<dynamic, dynamic> replyMap = await channel.send(requestMap);
+
+    print(replyMap.toString());
+    print('======= on Create ========');
     if (replyMap == null) {
       throw PlatformException(
           code: 'channel-error',

@@ -29,6 +29,8 @@ class MethodChannelVideoPlayer extends VideoPlayerPlatform {
   Future<int> create(DataSource dataSource) async {
     CreateMessage message = CreateMessage();
 
+    debugPrint('MethodChannelVideoPlayer --> create from ${dataSource.toString()}');
+
     switch (dataSource.sourceType) {
       case DataSourceType.asset:
         message.asset = dataSource.asset;
@@ -37,6 +39,7 @@ class MethodChannelVideoPlayer extends VideoPlayerPlatform {
       case DataSourceType.network:
         message.uri = dataSource.uri;
         message.formatHint = _videoFormatStringMap[dataSource.formatHint];
+        message.options = dataSource.options;
         break;
       case DataSourceType.file:
         message.uri = dataSource.uri;

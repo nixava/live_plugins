@@ -264,6 +264,12 @@ class VideoPlayerController extends ValueNotifier<VideoPlayerValue> {
           sourceType: DataSourceType.network,
           uri: dataSource,
           formatHint: formatHint,
+          options: null == videoPlayerOptions ? null : {
+            "drmScheme": videoPlayerOptions.drmScheme,
+            "drmLicenseUri": videoPlayerOptions.drmLicenseUri,
+            "userAgent": videoPlayerOptions.userAgent,
+            "drmSessionForClearContent": videoPlayerOptions.drmSessionForClearContent
+          }
         );
         break;
       case DataSourceType.file:

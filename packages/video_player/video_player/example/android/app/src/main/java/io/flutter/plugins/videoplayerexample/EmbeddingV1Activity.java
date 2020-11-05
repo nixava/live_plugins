@@ -5,7 +5,8 @@
 package io.flutter.plugins.videoplayerexample;
 
 import android.os.Bundle;
-import dev.flutter.plugins.integration_test.IntegrationTestPlugin;
+import android.view.WindowManager;
+
 import io.flutter.plugins.videoplayer.VideoPlayerPlugin;
 
 @SuppressWarnings("deprecation")
@@ -13,9 +14,10 @@ public class EmbeddingV1Activity extends io.flutter.app.FlutterActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    IntegrationTestPlugin.registerWith(
-        registrarFor("dev.flutter.plugins.integration_test.IntegrationTestPlugin"));
+    getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
     VideoPlayerPlugin.registerWith(
         registrarFor("io.flutter.plugins.videoplayer.VideoPlayerPlugin"));
   }
+
+
 }

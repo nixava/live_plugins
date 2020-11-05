@@ -8,6 +8,7 @@ import android.content.Context;
 import android.os.Build;
 import android.util.Log;
 import android.util.LongSparseArray;
+
 import io.flutter.embedding.engine.loader.FlutterLoader;
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.plugin.common.BinaryMessenger;
@@ -137,7 +138,7 @@ public class VideoPlayerPlugin implements FlutterPlugin, VideoPlayerApi {
               handle,
               "asset:///" + assetLookupKey,
               null,
-              options);
+              arg.getOptions());
     } else {
       player =
           new VideoPlayer(
@@ -146,7 +147,7 @@ public class VideoPlayerPlugin implements FlutterPlugin, VideoPlayerApi {
               handle,
               arg.getUri(),
               arg.getFormatHint(),
-              options);
+              arg.getOptions());
     }
     videoPlayers.put(handle.id(), player);
 

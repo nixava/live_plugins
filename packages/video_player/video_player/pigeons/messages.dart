@@ -29,6 +29,7 @@ class CreateMessage {
   String uri;
   String packageName;
   String formatHint;
+  Map<dynamic, dynamic> options;
 }
 
 class MixWithOthersMessage {

@@ -7,6 +7,7 @@ import io.flutter.plugin.common.BasicMessageChannel;
 import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.plugin.common.StandardMessageCodec;
 import java.util.HashMap;
+import java.util.Map;
 
 /** Generated class from Pigeon. */
 @SuppressWarnings("unused")
@@ -83,12 +84,23 @@ public class Messages {
       this.formatHint = setterArg;
     }
 
+    private VideoPlayerOptions options;
+
+    public VideoPlayerOptions getOptions() {
+      return options;
+    }
+
+    public void setOptions(VideoPlayerOptions options) {
+      this.options = options;
+    }
+
     HashMap toMap() {
       HashMap<String, Object> toMapResult = new HashMap<>();
       toMapResult.put("asset", asset);
       toMapResult.put("uri", uri);
       toMapResult.put("packageName", packageName);
       toMapResult.put("formatHint", formatHint);
+      toMapResult.put("options", VideoPlayerOptions.toMap(options));
       return toMapResult;
     }
 
@@ -102,7 +114,23 @@ public class Messages {
       fromMapResult.packageName = (String) packageName;
       Object formatHint = map.get("formatHint");
       fromMapResult.formatHint = (String) formatHint;
+      Object options = map.get("options");
+      fromMapResult.options = VideoPlayerOptions.fromMap((Map) options);
+
+      System.out.println("fromMapResult = " + fromMapResult);
+
       return fromMapResult;
+    }
+
+    @Override
+    public String toString() {
+      return "CreateMessage{" +
+              "asset='" + asset + '\'' +
+              ", uri='" + uri + '\'' +
+              ", packageName='" + packageName + '\'' +
+              ", formatHint='" + formatHint + '\'' +
+              ", options=" + options +
+              '}';
     }
   }
 
@@ -357,6 +385,8 @@ public class Messages {
                 binaryMessenger,
                 "dev.flutter.pigeon.VideoPlayerApi.create",
                 new StandardMessageCodec());
+        System.out.println("=======> dev.flutter.pigeon.VideoPlayerApi.create");
+        System.out.println("=======> api = " + api);
         if (api != null) {
           channel.setMessageHandler(
               (message, reply) -> {

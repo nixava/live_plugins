@@ -218,9 +218,13 @@ class _BumbleBeeRemoteVideoState extends State<_BumbleBeeRemoteVideo> {
   void initState() {
     super.initState();
     _controller = VideoPlayerController.network(
-      'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
+      'https://th1.eye.io/P20047.mpd',
       closedCaptionFile: _loadCaptions(),
-      videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true),
+      videoPlayerOptions: VideoPlayerOptions(
+        mixWithOthers: false,
+        drmScheme: 'widevine',
+        drmLicenseUri: 'https://live.eye.io/proxy'
+      ),
     );
 
     _controller.addListener(() {

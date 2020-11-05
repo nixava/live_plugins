@@ -151,6 +151,7 @@ class DataSource {
     this.formatHint,
     this.asset,
     this.package,
+    this.options
   });
 
   /// The way in which the video was originally loaded.
@@ -175,6 +176,13 @@ class DataSource {
   /// The package that the asset was loaded from. Only set for
   /// [DataSourceType.asset] videos.
   final String package;
+
+  final Map<dynamic, dynamic> options;
+
+  @override
+  String toString() {
+    return 'DataSource{sourceType: $sourceType, uri: $uri, formatHint: $formatHint, asset: $asset, package: $package, options: $options}';
+  }
 }
 
 /// The way in which the video was originally loaded.
@@ -348,6 +356,14 @@ class VideoPlayerOptions {
   /// The default value is false
   final bool mixWithOthers;
 
+  String drmScheme;
+
+  String drmLicenseUri;
+
+  bool drmSessionForClearContent;
+
+  String userAgent;
+
   /// set additional optional player settings
-  VideoPlayerOptions({this.mixWithOthers = false});
+  VideoPlayerOptions({this.mixWithOthers = false, this.drmScheme, this.drmLicenseUri, this.drmSessionForClearContent = false, this.userAgent = "FlutterExoPlayer"});
 }
