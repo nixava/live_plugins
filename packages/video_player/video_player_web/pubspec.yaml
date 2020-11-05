@@ -20,13 +20,17 @@ dependencies:
     sdk: flutter
   meta: ^1.1.7
   video_player_platform_interface:
-    path: ../video_player_platform_interface
+    git:
+      url: https://github.com/nixava/live_plugins.git
+      path: packages/video_player/video_player_platform_interface
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   video_player:
-    path: ../video_player
+    git:
+      url: https://github.com/nixava/live_plugins.git
+      path: packages/video_player/video_player
   pedantic: ^1.8.0
 
 environment:
